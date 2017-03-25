@@ -1,0 +1,19 @@
+version: "3"
+services:
+  api:
+    build: ./api
+    command: gunicorn deploythedocs.wsgi:application --bind 0.0.0.0:8000
+    environment:
+      - DOCS_ROOT=/var/www/deploythedocs/docs
+    volumes:
+      - docs-volume:/var/www/deploythedocs/docs
+  frontend:
+    build: ./frontend
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    volumes:
+      - docs-volume:/var/www/deploythedocs/docs
+volumes:
+  docs-volume:

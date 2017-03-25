@@ -1,0 +1,25 @@
+{
+  "env": {
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  },
+  "presets": [
+    ["latest", {
+      "es2015": {
+        "modules": false
+      }
+    }],
+    "react"
+  ],
+  "plugins": [
+    ["transform-imports", {
+      "react-bootstrap": {
+        "transform": "react-bootstrap/es/${member}",
+        "preventFullImport": true
+      }
+    }]
+  ]
+}
